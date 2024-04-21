@@ -14,7 +14,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Color(0xFF012B5B),
         title: Text('Detailed News'),
       ),
       body: SingleChildScrollView(

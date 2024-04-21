@@ -7,7 +7,7 @@ import 'package:news_app/model/news_artical_model.dart';
 import 'package:news_app/screen/detailed_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF012B5B),
         title: const Text('Flutter News App'),
       ),
       body: Obx(() {
@@ -47,12 +48,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? Image.network(
                           article.urlToImage,
                           fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            // If image fails to load, show placeholder image
+                            return Image.asset(
+                              'assets/images/news.jpeg',
+                              fit: BoxFit.cover,
+                            );
+                          },
                         )
-                      : Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/news.jpeg'))), // Placeholder color
+                      : Image.asset(
+                          'assets/images/news.jpeg',
+                          fit: BoxFit.cover,
                         ),
                 ),
                 onTap: () {
